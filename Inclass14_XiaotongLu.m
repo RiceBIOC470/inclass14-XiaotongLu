@@ -4,7 +4,7 @@
 
 % (1) Make a binary mask by thresholding as best you can
 %Xiaotong Lu
- I=imread('D:\stemcells_dapi.tif');
+ I=imread('stemcells_dapi.tif');
 img_bw=I>270;
 imshow(img_bw,[])
 
@@ -14,7 +14,7 @@ imshow(img_bw,[])
 % distance transform. Which works better in this case?
 %Xiaotong Lu
 %A:work with erosion
-I=imread('D:\stemcells_dapi.tif');
+I=imread('stemcells_dapi.tif');
 CC=bwconncomp(img_bw);
 stats=regionprops(CC,'Area');
 area=[stats.Area];
@@ -44,5 +44,5 @@ L(~img_bw)=0;
 rgb=label2rgb(L,'jet',[.5 .5 .5]);
 figure;
 imshow(rgb,'InitialMagnification','fit');
-
+%Xiaotong Lu
 In this case, working with distance transform is better than working with erode. 
