@@ -13,8 +13,10 @@ imshow(img_bw,[])
 % ways to define the basins. (A) With erosion of the mask (B) with a
 % distance transform. Which works better in this case?
 %Xiaotong Lu
-%A:work with erosion
 I=imread('stemcells_dapi.tif');
+img_bw=I>270;
+imshow(img_bw,[])
+%A:work with erosion
 CC=bwconncomp(img_bw);
 stats=regionprops(CC,'Area');
 area=[stats.Area];
@@ -32,7 +34,7 @@ basin=imimposemin(basin,nucmin|outside);
 pcolor(basin);shading flat;
 L=watershed(basin);
 imshow(L,[]);colormap('jet');caxis([0 20]);
-newmask=L>1|(I2-fusedmask);
+newmask=L>1|(img_bw-fusedmask);
 imshow(newmask,'InitialMagnification','fit');
 %XiaotongLu
 %B: work with distance transform
